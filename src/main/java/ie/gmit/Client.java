@@ -5,24 +5,27 @@
 
 package ie.gmit;
 
+import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ClientAccount {
+public class Client {
 
     private String title;
     private String name;
     private String id;
     private String phone;
     private String email;
+    private double balance;
     private int age;
 
-    public ClientAccount(String title, String name, String id, String phone, int age) {
+    public Client(String title, String name, String id, String phone, int age, double balance) {
         setTitle(title);
         setName(name);
         setId(id);
         setPhone(phone);
         setEmail(email);
+        setBalance(balance);
         setAge(age);
     }
 
@@ -127,6 +130,28 @@ public class ClientAccount {
             throw new IllegalArgumentException("Invalid age");
         }
     }
+
+    public void setBalance(double balance) {
+
+//        boolean b = false;
+//
+//        if (BigDecimal.valueOf(balance).scale() <= 2)
+//        {
+//            b == true;
+//        }
+        boolean b = (BigDecimal.valueOf(balance).scale() <= 2);
+
+        if( b == true )
+        {
+            this.balance = balance;
+        }
+        else
+        {
+            throw new IllegalArgumentException("Invalid balance");
+        }
+    }
+
+    public double getBalance(){ return balance; }
 
 
     @Override
