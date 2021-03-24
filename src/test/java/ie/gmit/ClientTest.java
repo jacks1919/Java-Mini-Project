@@ -59,5 +59,4 @@ public class ClientTest {
         Exception e = assertThrows(IllegalArgumentException.class, () -> new Client("Mr", "Jack", "1234567890", "432111111111", 20, 5000.00) );
         assertEquals("Invalid balance", e.getMessage());
     }
-
 }
