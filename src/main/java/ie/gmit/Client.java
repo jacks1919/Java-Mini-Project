@@ -6,6 +6,7 @@
 
 package ie.gmit;
 
+import javax.swing.*;
 import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -15,15 +16,18 @@ public class Client {
     private String title;
     private String name;
     private String id;
+    private String eircode;
     private String phone;
     private String email;
     private double balance;
     private int age;
 
-    public Client(String title, String name, String id, String phone, int age, double balance) {
+    public Client(String title, String name, String id, String eircode, String phone, int age, double balance) // Add email
+    {
         setTitle(title);
         setName(name);
         setId(id);
+        setEircode(eircode);
         setPhone(phone);
         setEmail(email);
         setBalance(balance);
@@ -82,6 +86,28 @@ public class Client {
         return id;
     }
 
+    public void setEircode(String eircode)
+    {
+        String regexEIR = "(?:^[AC-FHKNPRTV-Y][0-9]{2}|D6W)[ -]?[0-9AC-FHKNPRTV-Y]{4}$";
+
+        Pattern pattern = Pattern.compile(regexEIR);
+
+        Matcher matcher = pattern.matcher(eircode);
+        boolean matchFound = matcher.find();
+
+        if(matchFound && matchFound)
+        {
+            this.eircode = eircode;
+        }
+        else
+        {
+            throw new IllegalArgumentException("Invalid eircode");
+        }
+    }
+
+    public String getEircode() {
+        return eircode;
+    }
 
     public void setPhone(String phone) {
         if( phone.length() > 10 )
